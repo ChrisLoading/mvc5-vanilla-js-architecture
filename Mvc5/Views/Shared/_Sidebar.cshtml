@@ -1,0 +1,23 @@
+﻿<aside class="sidebar">
+    <div class="nav-title">功能選單</div>
+    <ul class="nav-list">
+        <li>
+            @Html.ActionLink("請購單", "History", "Pr", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "pr" && ViewContext.RouteData.Values["action"]?.ToString() == "history" ? "is-active" : "", data_key = "pr" })
+        </li>
+        <li>
+            @Html.ActionLink("採購單", "History", "Po", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "Po" && ViewContext.RouteData.Values["action"]?.ToString() == "History" ? "is-active" : "", data_key = "po" })
+        </li>
+        <li>
+            @Html.ActionLink("驗收單", "History", "Gr", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "Gr" && ViewContext.RouteData.Values["action"]?.ToString() == "History" ? "is-active" : "", data_key = "gr" })
+        </li>
+        <li>
+            @Html.ActionLink("入庫單", "History", "In", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "In" && ViewContext.RouteData.Values["action"]?.ToString() == "History" ? "is-active" : "", data_key = "in" })
+        </li>
+        <li>
+            @Html.ActionLink("調撥單", "History", "Itr", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "Itr" && ViewContext.RouteData.Values["action"]?.ToString() == "History" ? "is-active" : "", data_key = "itr" })
+        </li>
+        <li>
+            @Html.ActionLink("庫存表", "Index", "Store", null, new { @class = ViewContext.RouteData.Values["controller"]?.ToString() == "Store" ? "is-active" : "", data_key = "st" })
+        </li>
+    </ul>
+</aside>

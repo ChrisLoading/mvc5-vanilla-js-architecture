@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PRDemoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PRApprover">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrId" Type="int" Nullable="false" />
+          <Property Name="Step" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApproveDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="ApproveStatus" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="PRHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrNo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PrDate" Type="nvarchar" MaxLength="20" />
+          <Property Name="Requester" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dept" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApproveStatus" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreatedAt" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PRItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrId" Type="int" Nullable="false" />
+          <Property Name="Idx" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Spec" Type="nvarchar" MaxLength="200" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="Vendor" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_PRApprover_PRHeader">
+          <End Role="PRHeader" Type="Self.PRHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PRApprover" Type="Self.PRApprover" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRApprover">
+              <PropertyRef Name="PrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRItem_PRHeader">
+          <End Role="PRHeader" Type="Self.PRHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PRItem" Type="Self.PRItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRItem">
+              <PropertyRef Name="PrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRDemoModelStoreContainer">
+          <EntitySet Name="PRApprover" EntityType="Self.PRApprover" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRHeader" EntityType="Self.PRHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRItem" EntityType="Self.PRItem" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PRApprover_PRHeader" Association="Self.FK_PRApprover_PRHeader">
+            <End Role="PRHeader" EntitySet="PRHeader" />
+            <End Role="PRApprover" EntitySet="PRApprover" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRItem_PRHeader" Association="Self.FK_PRItem_PRHeader">
+            <End Role="PRHeader" EntitySet="PRHeader" />
+            <End Role="PRItem" EntitySet="PRItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRDemoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PRApprover">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrId" Type="Int32" Nullable="false" />
+          <Property Name="Step" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Approver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRHeader" Relationship="Self.FK_PRApprover_PRHeader" FromRole="PRApprover" ToRole="PRHeader" />
+        </EntityType>
+        <EntityType Name="PRHeader">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PrDate" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Requester" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApproveStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedAt" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRApprover" Relationship="Self.FK_PRApprover_PRHeader" FromRole="PRHeader" ToRole="PRApprover" />
+          <NavigationProperty Name="PRItem" Relationship="Self.FK_PRItem_PRHeader" FromRole="PRHeader" ToRole="PRItem" />
+        </EntityType>
+        <EntityType Name="PRItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrId" Type="Int32" Nullable="false" />
+          <Property Name="Idx" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Spec" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="Vendor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PRHeader" Relationship="Self.FK_PRItem_PRHeader" FromRole="PRItem" ToRole="PRHeader" />
+        </EntityType>
+        <Association Name="FK_PRApprover_PRHeader">
+          <End Role="PRHeader" Type="Self.PRHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PRApprover" Type="Self.PRApprover" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRApprover">
+              <PropertyRef Name="PrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRItem_PRHeader">
+          <End Role="PRHeader" Type="Self.PRHeader" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PRItem" Type="Self.PRItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRHeader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PRItem">
+              <PropertyRef Name="PrId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AppDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PRApprover" EntityType="Self.PRApprover" />
+          <EntitySet Name="PRHeader" EntityType="Self.PRHeader" />
+          <EntitySet Name="PRItem" EntityType="Self.PRItem" />
+          <AssociationSet Name="FK_PRApprover_PRHeader" Association="Self.FK_PRApprover_PRHeader">
+            <End Role="PRHeader" EntitySet="PRHeader" />
+            <End Role="PRApprover" EntitySet="PRApprover" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRItem_PRHeader" Association="Self.FK_PRItem_PRHeader">
+            <End Role="PRHeader" EntitySet="PRHeader" />
+            <End Role="PRItem" EntitySet="PRItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PRDemoModelStoreContainer" CdmEntityContainer="AppDbContext">
+          <EntitySetMapping Name="PRApprover">
+            <EntityTypeMapping TypeName="PRDemoModel.PRApprover">
+              <MappingFragment StoreEntitySet="PRApprover">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrId" ColumnName="PrId" />
+                <ScalarProperty Name="Step" ColumnName="Step" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+                <ScalarProperty Name="ApproveDate" ColumnName="ApproveDate" />
+                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRHeader">
+            <EntityTypeMapping TypeName="PRDemoModel.PRHeader">
+              <MappingFragment StoreEntitySet="PRHeader">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrNo" ColumnName="PrNo" />
+                <ScalarProperty Name="PrDate" ColumnName="PrDate" />
+                <ScalarProperty Name="Requester" ColumnName="Requester" />
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="ApproveStatus" ColumnName="ApproveStatus" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRItem">
+            <EntityTypeMapping TypeName="PRDemoModel.PRItem">
+              <MappingFragment StoreEntitySet="PRItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PrId" ColumnName="PrId" />
+                <ScalarProperty Name="Idx" ColumnName="Idx" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Spec" ColumnName="Spec" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Vendor" ColumnName="Vendor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

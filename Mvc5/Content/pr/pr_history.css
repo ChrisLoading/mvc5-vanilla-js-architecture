@@ -1,0 +1,53 @@
+/* css/pr_history.css */
+:root {
+  --edge: #f59e0b;
+  --head: #fff7ed;
+  --ink: #7c2d12;
+  --accent: #f59e0b;
+}
+
+body {
+  font-family: Arial, "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+  background: #fffbeb;
+  margin: 16px;
+}
+
+.container { display: flex; gap: 16px; }
+.sidebar { width: 220px; border: 1px solid var(--edge); background: #fff; padding: 8px; height: fit-content; }
+.sidebar .nav-title { font-weight: 800; padding: 8px 10px; background: var(--head); color: var(--ink); border: 1px solid var(--edge); margin-bottom: 8px; text-align: center; letter-spacing: .08em; }
+.sidebar .nav-list { list-style: none; margin: 0; padding: 0; }
+.sidebar .nav-list a { display: block; padding: 10px 12px; border: 1px solid var(--edge); border-radius: 10px; margin-bottom: 8px; text-decoration: none; color: #1f2937; background: #fff; }
+.sidebar .nav-list a:hover { background: #fff5e6; }
+.sidebar .nav-list a.is-active { outline: 2px solid #6b5bd6; }
+
+.sheet { flex: 1; background: #fff; border: 1px solid var(--edge); }
+.section-head { text-align: center; padding: 8px 10px; background: var(--head); color: var(--ink); font-weight: 800; border-bottom: 1px solid var(--edge); }
+.section { margin-bottom: 18px; }
+
+.actions-bar,
+.filters { display: flex; gap: 8px; align-items: center; margin: 10px; }
+
+.btn { border: 1px solid var(--accent); background: var(--accent); color: #fff; padding: 8px 12px; border-radius: 8px; font-weight: 700; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn.secondary { background: #fff; color: var(--accent); }
+.input { padding: 8px 10px; border: 1px solid var(--edge); border-radius: 8px; background: #fff; min-width: 260px; }
+
+table { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; }
+th,
+td { border: 1px solid var(--edge); padding: 8px; white-space: nowrap; text-align: center; }
+thead th { background: var(--head); color: var(--ink); }
+.left { text-align: left; }
+.muted { color: #6b7280; }
+.btn-link { background: transparent; border: 0; color: #2563eb; cursor: pointer; text-decoration: underline; padding: 0 6px; }
+
+dialog { border: 1px solid var(--edge); border-radius: 10px; padding: 0; max-width: 940px; width: 92%; }
+dialog header { padding: 10px 14px; background: var(--head); border-bottom: 1px solid var(--edge); font-weight: 700; }
+dialog .body { padding: 12px 14px; max-height: 65vh; overflow: auto; }
+dialog footer { display: flex; gap: 8px; justify-content: flex-end; padding: 10px 14px; border-top: 1px solid #eee; background: #fff7ed; }
+
+/* 新增 .detail-table、.detail-block-spacer 等共用樣式 */
+.detail-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+.detail-table th,
+.detail-table td { border: 1px solid var(--edge); padding: 6px; text-align: center; }
+.detail-table th { background: var(--head); color: var(--ink); font-weight: 700; }
+.detail-table td.left { text-align: left; }
+.detail-block-spacer { height: 10px; }

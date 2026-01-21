@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ad53afe413c942d78a556423ac793708" Name="Diagram1">
+        <EntityTypeShape EntityType="PRDemoModel.PRApprover" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRDemoModel.PRHeader" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRDemoModel.PRItem" Width="1.5" PointX="4.125" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="PRDemoModel.FK_PRApprover_PRHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="PRDemoModel.FK_PRItem_PRHeader" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

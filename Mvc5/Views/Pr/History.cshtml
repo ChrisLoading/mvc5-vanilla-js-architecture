@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "請購單歷史";
+    Layout = "~/Views/Shared/_LayoutWithSidebar.cshtml";
+}
+
+<div class="page">
+    <h2>請購單歷史</h2>
+
+    <div class="pane">
+        <div class="bar">
+            <input id="filterA" class="form-control" placeholder="搜尋 未覆核/審核中..." />
+            <button id="btnRefreshA" class="btn btn-default">重新整理</button>
+        </div>
+        <table id="tblA">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>請購單號</th>
+                    <th>請購日期</th>
+                    <th>申請人員</th>
+                    <th>請購部門</th>
+                    <th>項目數</th>
+                    <th>覆核狀態</th>
+                    <th>建檔時間</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="pane">
+        <div class="bar">
+            <input id="filterB" class="form-control" placeholder="搜尋 已覆核..." />
+            <button id="btnRefreshB" class="btn btn-default">重新整理</button>
+        </div>
+        <table id="tblB">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>請購單號</th>
+                    <th>請購日期</th>
+                    <th>申請人員</th>
+                    <th>請購部門</th>
+                    <th>項目數</th>
+                    <th>覆核狀態</th>
+                    <th>建檔時間</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <dialog id="detailDlg">
+        <div class="dlg-head">
+            <h3 id="detailTitle"></h3>
+            <button id="detailCloseBtn" class="btn btn-default">關閉</button>
+        </div>
+        <div id="detailBody"></div>
+    </dialog>
+</div>
+
+@*@section styles {
+    <link rel="stylesheet" href="~/Content/pr/pr_history.css" />
+}*@
+
+@section scripts{
+    <script type="module" src="~/Scripts/pr/main.js"></script>
+}
